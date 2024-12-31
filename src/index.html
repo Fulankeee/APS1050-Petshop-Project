@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Pete's Pet Shop</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h1 class="text-center">Pete's Pet Shop</h1>
+          <hr/>
+          <br/>
+          <!-- Filter Form -->
+          <form id="filterForm" class="form-inline text-center">
+            <div class="form-group">
+              <label for="breedFilter">Breed:</label>
+              <input type="text" id="breedFilter" class="form-control" placeholder="Enter breed">
+            </div>
+            <div class="form-group">
+              <label for="ageFilter">Age:</label>
+              <input type="number" id="ageFilter" class="form-control" placeholder="Enter age">
+            </div>
+            <div class="form-group">
+              <label for="locationFilter">Location:</label>
+              <input type="text" id="locationFilter" class="form-control" placeholder="Enter location">
+            </div>
+            <div class="form-group">
+              <label for="adoptFilter">Adoption Status:</label>
+              <select id="adoptFilter" class="form-control">
+                <option value="">All</option>
+                <option value="adopted">Adopted</option>
+                <option value="available">Available</option>
+              </select>
+            </div>
+            <button type="button" id="filterButton" class="btn btn-primary">Filter</button>
+            <button type="button" id="resetButton" class="btn btn-default">Reset</button>
+          </form>
+          <!-- Button for viewing user's adoption history -->
+          <div class="text-center">
+            <button class="btn btn-primary btn-user-history" type="button">View My Adoption History</button>
+            <div id="user-history" style="margin-top: 10px; display: none;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buy Product and Book Service Section -->
+      <div class="row mb-4">
+        <!-- Buy Product -->
+        <div class="col-md-6">
+          <h3>Buy a Product</h3>
+          <select id="productDropdown" class="form-control">
+            <option value="" disabled selected>Select a Product</option>
+            <option value="0">Pet Food - 0.01 ETH</option>
+            <option value="1">Dog Toy - 0.005 ETH</option>
+            <option value="2">Cat Bed - 0.02 ETH</option>
+          </select>
+          <button class="btn btn-primary btn-block" onclick="App.handleBuyProduct(event)">Buy Product</button>
+      </div>
+        <!-- Book Service -->
+        <div class="col-md-6">
+          <h3>Book a Service</h3>
+          <select id="serviceDropdown" class="form-control">
+              <option value="" disabled selected>Select a Service</option>
+              <option value="0">Grooming - 0.03 ETH</option>
+              <option value="1">Vaccination - 0.05 ETH</option>
+              <option value="2">Pet Sitting - 0.02 ETH</option>
+          </select>
+          <button class="btn btn-warning btn-block" onclick="App.handleBookService(event)">Book Service</button>
+      </div>
+
+
+      <!-- Pets Section -->
+      <div id="petsRow" class="row">
+        <!-- PETS LOAD HERE -->
+      </div>
+    </div>
+
+    <div id="petTemplate" style="display: none;">
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-default panel-pet">
+          <div class="panel-heading">
+            <h3 class="panel-title">Scrappy</h3>
+          </div>
+          <div class="panel-body">
+            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
+            <br/><br/>
+            <strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br/>
+            <strong>Age</strong>: <span class="pet-age">3</span><br/>
+            <strong>Location</strong>: <span class="pet-location">Warren, MI</span><br/><br/>
+            <strong>Votes</strong>: <span class="pet-votes">0</span><br/><br/>
+            <strong>Total Donations</strong>: <span class="pet-donations">0</span> ETH<br/><br/>
+            <button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button>
+            
+            <button class="btn btn-success btn-donate" type="button" data-id="0">Donate</button>
+            <button class="btn btn-info btn-history" type="button" data-id="0">View Adoption History</button>
+            <button class="btn btn-default btn-vote" type="button" data-id="0">Vote</button>
+            <button class="btn btn-info btn-register" type="button" data-id="0" data-toggle="modal" data-target="#vaccinationModal">Register</button>
+            <p id="history-0" class="adoption-history" style="display: none;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Vaccination Modal -->
+    <div class="modal fade" id="vaccinationModal" tabindex="-1" role="dialog" aria-labelledby="vaccinationModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="vaccinationModalLabel">Vaccination Registration</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form id="vaccinationForm">
+              <div class="form-group">
+                <label for="vaccineInfo">Vaccine Details</label>
+                <textarea id="vaccineInfo" class="form-control" rows="3" placeholder="Enter vaccine details..."></textarea>
+              </div>
+              <input type="hidden" id="currentPetId" value="">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="completeVaccination" class="btn btn-primary">Complete</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--A div with class adoption-history where the history will be displayed-->
+
+    <div id="petTemplate" class="panel panel-default">
+      <!-- Other pet information -->
+      <button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button>
+      <button class="btn btn-default btn-history" type="button" data-id="0">View History</button>
+      <div class="adoption-history" id="history-0"></div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
