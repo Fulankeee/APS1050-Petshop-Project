@@ -30,3 +30,5 @@ truffle migration –reset
 npm run dev
 ```
 
+## Operation
+The changes we've made to the Petshop DApp is described in the Executive Summary.docx
