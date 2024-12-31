@@ -9,7 +9,7 @@ Truffle version: 5.3.3
 Ganache version or ganache-cli version: v2.5.4
 
 
-Installation:
+## Installation:
 1. Install Dependencies above.
 
 2. Open Ganache
