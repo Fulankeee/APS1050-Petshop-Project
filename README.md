@@ -1,40 +1,32 @@
-# Pet Shop Truffle Box
+# APS1050 Petshop Project
 
-This box has all you need to get started with our [Pet Shop tutorial](http://truffleframework.com/tutorials/pet-shop).
+## Dependencies:
+Node.js version: V16.14.0
+lite-server version: ^2.3.0
+Solidity version: ^0.5.0
+web3 version: v1.5.2
+Truffle version: 5.3.3
+Ganache version or ganache-cli version: v2.5.4
 
-## Installation
 
-1. Install Truffle globally.
-    ```javascript
-    npm install -g truffle
-    ```
+Installation:
+1. Install Dependencies above.
 
-2. Download the box. This also takes care of installing the necessary dependencies.
-    ```javascript
-    truffle unbox pet-shop
-    ```
+2. Open Ganache
+Open the Ganache, and click on QUICKSTART to obtain a new workspace
 
-3. Run the development console.
-    ```javascript
-    truffle develop
-    ```
+3. MetaMask extension and connection
+Add the MetaMask extension to Chrome, import the Ganache wallet and set the network port to 5777. Import another account from Ganache or set the extension up again for a new account.
 
-4. Compile and migrate the smart contracts. Note inside the development console we don't preface commands with `truffle`.
-    ```javascript
-    compile
-    migrate
-    ```
+4. Compile and migrate the smart contracts
+```
+truffle compile
+truffle migration –reset
+```
 
-5. Run the `liteserver` development server (outside the development console) for front-end hot reloading. Smart contract changes must be manually recompiled and migrated.
-    ```javascript
-    // Serves the front-end on http://localhost:3000
-    npm run dev
-    ```
+5. Run the lite server development server
+// Serves the front-end on http://localhost:3000
+```
+npm run dev
+```
 
-**NOTE**: This box is not a complete dapp, but the starting point for the [Pet Shop tutorial](http://truffleframework.com/tutorials/pet-shop). You'll need to complete that for this to function.
-
-## FAQ
-
-* __How do I use this with the EthereumJS TestRPC?__
-
-    It's as easy as modifying the config file! [Check out our documentation on adding network configurations](http://truffleframework.com/docs/advanced/configuration#networks). Depending on the port you're using, you'll also need to update line 16 of `src/js/app.js`.
