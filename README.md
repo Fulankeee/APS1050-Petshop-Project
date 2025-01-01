@@ -1,12 +1,12 @@
 # APS1050 Petshop Project
 
 ## Dependencies:
-Node.js version: V16.14.0
-lite-server version: ^2.3.0
-Solidity version: ^0.5.0
-web3 version: v1.5.2
-Truffle version: 5.3.3
-Ganache version or ganache-cli version: v2.5.4
+- Node.js version: 16.14.0
+- lite-server version: 2.3.0
+- Solidity version: 0.5.0
+- web3 version: 1.5.2
+- Truffle version: 5.3.3
+- Ganache version or ganache-cli version: 2.5.4
 
 
 ## Installation:
